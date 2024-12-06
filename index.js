@@ -1,5 +1,4 @@
-const startBtn = document.getElementById('start')
-const endBtn = document.getElementById('end')
+const startButton = document.getElementById("start");
 
 const recordAudio = () =>
   new Promise(async resolve => {
@@ -34,14 +33,11 @@ const sleep = time => new Promise(resolve => setTimeout(resolve, time));
 
 const startRecording = async () => {
   const recorder = await recordAudio();
-  startBtn.disabled = true;
+  startButton.disabled = true;
   recorder.start();
-  audio.play();
-  startBtn.disabled = false;
-};
-
-async function endRecording() {
+  await sleep(3000);
   const audio = await recorder.stop();
-}
-
-
+  audio.play();
+  await sleep(3000);
+  startButton.disabled = false;
+};

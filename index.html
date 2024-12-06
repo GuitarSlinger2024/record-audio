@@ -1,13 +1,23 @@
 <!doctype html>
 <html>
-  <head>
-    <title>Record Audio Test</title>
-  </head>
-  <body>
-    <h1>Audio Recording Test</h1>
-    <p>Talk for 3 seconds, then you will hear your recording played back</p>
-    <script src="index.js"></script>
-    <button id="start" onclick="startRecording()">Start</button>
-    <button id="end" onclick="endRecording()">Stop</button>
-  </body>
+
+<head>
+  <title>Record Audio Test</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="index.js" defer></script>
+</head>
+
+<body>
+  <main>
+    <img src="./_img/mic-5.png" alt="Microphone image" id="mic">
+    <h1>Audio Recording</h1>
+    <br>
+    <div class="buttons">
+      <button id="start" onclick="startRecording()">Start</button>
+      <button id="end" onclick="endRecording()">Stop</button>
+      <button id="play" onclick="playRecording()">Play</button>
+    </div>
+  </main>
+</body>
+
 </html>

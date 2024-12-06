@@ -5,6 +5,63 @@
 }
 
 body {
+  padding: 5em;
+  font-size: 16px;
+  background-color: whitesmoke;
+  height: 100vh;
+}
+
+main {
+  position: relative;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: flex-start;
+  max-width: 400px;
+  margin: auto;
+  background-color: white;
+  height: calc(100% - 10em);
+}
+
+
+#mic {
+  position: absolute;
+  right: 1em;
+  top: 1em;
+  width: 1.5em;
+}
+
+h1 {
+  text-align: center;
+  margin: 1em;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+button {
+  width: 5em;
+  border-radius: .5em;
+  font-size: 1em;
+  font-weight: 700;
+  cursor: pointer;
+  outline: none;
+  transition: background-color .3s;
+}
+
+button:hover {
+  background-color: lightblue;
+}
+
+button:disabled {
+  opacity: .5;
+  pointer-events: none;
+}
+
+@media screen and (max-width: 500px) {
+  body {
+    font-size: 3.2vw;
+  }
+
 }
