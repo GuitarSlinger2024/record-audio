@@ -1,4 +1,9 @@
 const startButton = document.getElementById("start");
+const startBtn = document.getElementById('start')
+const stopBtn = document.getElementById('stop')
+const playBtn = document.getElementById('play')
+
+startBtn.onclick = startRecording
 
 const recordAudio = () =>
   new Promise(async resolve => {
@@ -17,8 +22,9 @@ const recordAudio = () =>
         mediaRecorder.addEventListener("stop", () => {
           const audioBlob = new Blob(audioChunks, { type: "audio/mpeg" });
           const audioUrl = URL.createObjectURL(audioBlob);
-          const audio = new Audio(audioUrl);
-          const play = () => audio.play();
+          audio = new Audio(audioUrl);
+          playBtn.onclick = playRecording.bind(this, audio)
+          
           stream.getTracks().forEach((track) => track.stop());
           resolve({ audioBlob, audioUrl, play });
         });
@@ -31,13 +37,20 @@ const recordAudio = () =>
 
 const sleep = time => new Promise(resolve => setTimeout(resolve, time));
 
-const startRecording = async () => {
+async function startRecording() {
+  startBtn.disabled = true;
   const recorder = await recordAudio();
   startButton.disabled = true;
   recorder.start();
-  await sleep(3000);
-  const audio = await recorder.stop();
-  audio.play();
-  await sleep(3000);
-  startButton.disabled = false;
+  stopBtn.onclick = endRecording.bind(this, recorder)
 };
+
+function endRecording(recorder) {
+  // const audio = await recorder.stop();
+  recorder.stop();
+  startBtn.disabled = false;
+}
+
+const playRecording = (audio) => {
+  audio.play()
+}
