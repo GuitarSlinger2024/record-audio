@@ -1,3 +1,6 @@
+const startBtn = document.getElementById('start')
+const endBtn = document.getElementById('end')
+
 const recordAudio = () =>
   new Promise(async resolve => {
     const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
@@ -29,14 +32,16 @@ const recordAudio = () =>
 
 const sleep = time => new Promise(resolve => setTimeout(resolve, time));
 
-const handleAction = async () => {
+const startRecording = async () => {
   const recorder = await recordAudio();
-  const actionButton = document.getElementById("action");
-  actionButton.disabled = true;
+  startBtn.disabled = true;
   recorder.start();
-  await sleep(3000);
-  const audio = await recorder.stop();
   audio.play();
-  await sleep(3000);
-  actionButton.disabled = false;
+  startBtn.disabled = false;
 };
+
+async function endRecording() {
+  const audio = await recorder.stop();
+}
+
+
